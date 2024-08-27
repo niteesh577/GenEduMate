@@ -1,0 +1,56 @@
+[
+    {
+        "title": "Factorial",
+        "description": "Write a function that returns the factorial of a number.",
+        "solution": "def factorial(n):\n    if n == 0:\n        return 1\n    else:\n        return n * factorial(n-1)",
+        "language": "Python"
+    },
+    {
+        "title": "Reverse String",
+        "description": "Write a function to reverse a string.",
+        "solution": "def reverse_string(s):\n    return s[::-1]",
+        "language": "Python"
+    },
+    {
+        "title": "Two Sum",
+        "description": "Given an array of integers, return indices of the two numbers such that they add up to a specific target.",
+        "solution": "def two_sum(nums, target):\n    lookup = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in lookup:\n            return [lookup[complement], i]\n        lookup[num] = i\n    return []",
+        "language": "Python"
+    },
+    {
+        "title": "Partition Equal Subset Sum",
+        "description": "Given an integer array nums, return true if you can partition the array into two subsets such that the sum of the elements in both subsets is equal or false otherwise.\n\nExample 1:\n\nInput: nums = [1,5,11,5]\nOutput: true\nExplanation: The array can be partitioned as [1, 5, 5] and [11].\nExample 2:\n\nInput: nums = [1,2,3,5]\nOutput: false\nExplanation: The array cannot be partitioned into equal sum subsets.\n\nConstraints:\n1 <= nums.length <= 200\n1 <= nums[i] <= 100",
+        "solution": "def can_partition(nums):\n    total_sum = sum(nums)\n    if total_sum % 2 != 0:\n        return False\n    target = total_sum // 2\n    dp = [False] * (target + 1)\n    dp[0] = True\n    for num in nums:\n        for i in range(target, num - 1, -1):\n            dp[i] = dp[i] or dp[i - num]\n    return dp[target]",
+        "language": "Python"
+    },
+    {
+        "title": "Longest Substring Without Repeating Characters",
+        "description": "Given a string, find the length of the longest substring without repeating characters.",
+        "solution": "def length_of_longest_substring(s):\n    char_map = {}\n    left = 0\n    max_length = 0\n    for right, char in enumerate(s):\n        if char in char_map:\n            left = max(left, char_map[char] + 1)\n        char_map[char] = right\n        max_length = max(max_length, right - left + 1)\n    return max_length",
+        "language": "Python"
+    },
+    {
+        "title": "Merge Intervals",
+        "description": "Given a collection of intervals, merge all overlapping intervals.",
+        "solution": "def merge_intervals(intervals):\n    intervals.sort(key=lambda x: x[0])\n    merged = []\n    for interval in intervals:\n        if not merged or merged[-1][1] < interval[0]:\n            merged.append(interval)\n        else:\n            merged[-1][1] = max(merged[-1][1], interval[1])\n    return merged",
+        "language": "Python"
+    },
+    {
+        "title": "Valid Parentheses",
+        "description": "Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.\n\nAn input string is valid if the brackets are closed in the correct order.",
+        "solution": "def is_valid(s):\n    stack = []\n    bracket_map = {')': '(', '}': '{', ']': '['}\n    for char in s:\n        if char in bracket_map.values():\n            stack.append(char)\n        elif char in bracket_map:\n            if stack and stack[-1] == bracket_map[char]:\n                stack.pop()\n            else:\n                return False\n    return not stack",
+        "language": "Python"
+    },
+    {
+        "title": "Climbing Stairs",
+        "description": "You are climbing a staircase. It takes n steps to reach the top.\n\nEach time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?",
+        "solution": "def climb_stairs(n):\n    if n == 1:\n        return 1\n    a, b = 1, 2\n    for _ in range(3, n + 1):\n        a, b = b, a + b\n    return b",
+        "language": "Python"
+    },
+    {
+        "title": "Container With Most Water",
+        "description": "Given n non-negative integers a1, a2, ..., an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of the line i is at (i, ai) and (i, 0). Find two lines, which together with the x-axis forms a container, such that the container contains the most water.",
+        "solution": "def max_area(height):\n    left, right = 0, len(height) - 1\n    max_area = 0\n    while left < right:\n        width = right - left\n        h = min(height[left], height[right])\n        max_area = max(max_area, width * h)\n        if height[left] < height[right]:\n            left += 1\n        else:\n            right -= 1\n    return max_area",
+        "language": "Python"
+    }
+]

@@ -1,0 +1,15 @@
+[
+    {
+        "title": "Factorial",
+        "description": "Write a function that returns the factorial of a number.",
+        "solution": "def factorial(n):\n    if n == 0:\n        return 1\n    else:\n        return n * factorial(n-1)",
+        "language": "Python"
+    },
+    {
+        "title": "Reverse String",
+        "description": "Write a function to reverse a string.",
+        "solution": "def reverse_string(s):\n    return s[::-1]",
+        "language": "Python"
+    },
+    ...
+]
